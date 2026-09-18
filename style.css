@@ -20,10 +20,11 @@ body {
 .screen {
     display: none;
     width: 100%;
-    max-width: 480px;
-    height: 100vh;
+    max-width: 420px;
+    min-height: 100vh;
     position: relative;
     background-color: #121212;
+    margin: 0 auto;
 }
 
 .screen.active {
@@ -35,7 +36,8 @@ body {
 
 .container-arte {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 9/16; 
+    max-height: 100vh;
     position: relative;
     display: flex;
     justify-content: center;
@@ -45,7 +47,6 @@ body {
 .fundo-convite {
     width: 100%;
     height: 100%;
-    /* Alterado de cover para contain para tirar o zoom e mostrar a arte inteira */
     object-fit: contain; 
     position: absolute;
     top: 0;
@@ -54,13 +55,12 @@ body {
 
 .btn-central {
     position: absolute;
-    top: 66%; /* O teu ajuste atual */
+    top: 68%;
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* O teu tamanho atual */
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
     
     background-image: url('botao-rosa.png');
     background-size: contain;
