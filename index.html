@@ -9,25 +9,33 @@
 </head>
 <body>
 
+    <!-- TELA 1: CONVITE OFICIAL -->
     <div id="tela-inicio" class="screen active">
         <div class="container-arte">
             <img src="arte.jpeg" alt="Convite Karen Luiza" class="fundo-convite">
-            <!-- Botão posicionado exatamente em cima do botão pequeno da arte -->
             <button id="btn-proximo" class="btn-central"></button>
         </div>
     </div>
 
+    <!-- TELA 2: TABELA DE PERGUNTAS (Com as classes individuais para cada campo) -->
     <div id="tela-perguntas" class="screen">
-        <div class="card-formulario">
-            <h2>Confirmação e Mensagem</h2>
-            <form id="form-mensagem">
-                <input type="text" id="nome-convidado" placeholder="Seu nome" required>
-                <textarea id="texto-mensagem" placeholder="Sua mensagem..." rows="4" required></textarea>
-                <button type="submit" class="btn-enviar">Enviar</button>
+        <div class="container-arte">
+            <img src="perguntas.jpeg" alt="Tabela de Perguntas" class="fundo-convite">
+            
+            <form id="form-mensagem" class="form-flutuante">
+                <input type="text" id="nome-convidado" class="input-arte campo-1" placeholder="Queremos saber quem está por aquii" required>
+                <input type="text" id="pergunta-gosta" class="input-arte campo-2" placeholder="Oque você gosta em mim" required>
+                <input type="text" id="pergunta-presente" class="input-arte campo-3" placeholder="Qual presente você vai levar" required>
+                <input type="text" id="pergunta-fora" class="input-arte campo-4" placeholder="Vai ficar de fora dessa comemoração" required>
+                <input type="text" id="pergunta-confirmou" class="input-arte campo-5" placeholder="Você já confirmou a presença..." required>
+                <input type="text" id="pergunta-beber" class="input-arte campo-6" placeholder="E aí, vai beber ou só ficar observando" required>
+                
+                <button type="submit" class="btn-enviar-arte campo-botao">Enviar Respostas</button>
             </form>
         </div>
     </div>
 
+    <!-- TELA 3: SUCESSO -->
     <div id="tela-sucesso" class="screen">
         <div class="card-formulario">
             <h2>Tudo Pronto!</h2>
