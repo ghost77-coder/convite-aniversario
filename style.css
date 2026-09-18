@@ -111,12 +111,12 @@ body {
 /* --- CONTROLO DA POSIÇÃO DE CADA CAMPO (Altera o 'top' para subir ou descer) --- */
 
 .campo-1 {
-    top: 45%; 
+    top: 43%; 
     left: 29%;
 }
 
 .campo-2 {
-    top: 45%; 
+    top: 43%; 
     left: 71%;
 }
 
