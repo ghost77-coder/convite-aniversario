@@ -53,15 +53,32 @@ body {
 
 .btn-central {
     position: absolute;
-    bottom: 18%;
+    top: 68%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 70px;
-    background: transparent;
+    transform: translate(-50%, -50%);
+    
+    /* Tamanho exato do botão */
+    width: 120px;
+    height: 120px;
+    
+    background-image: url('botao-rosa.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    
     border: none;
     cursor: pointer;
     z-index: 10;
+    padding: 0;
+
+    /* Transforma a área de clique num círculo perfeito, ignorando os cantos quadrados da imagem */
+    border-radius: 50%;
+}
+
+.btn-central:focus, .btn-central:active {
+    outline: none;
+    box-shadow: none;
 }
 
 .card-formulario {
