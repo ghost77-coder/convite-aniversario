@@ -1,14 +1,18 @@
 // script.js
 
-// Quando a página carregar completamente
 document.addEventListener("DOMContentLoaded", () => {
     const btnProximo = document.getElementById("btn-proximo");
     const telaInicio = document.getElementById("tela-inicio");
     const telaPerguntas = document.getElementById("tela-perguntas");
     const formMensagem = document.getElementById("form-mensagem");
-    const telaSucesso = document.getElementById("tela-sucesso");
+    const telaConvite = document.getElementById("tela-convite");
+    
+    // Elementos da telinha de download
+    const btnAbrirModal = document.getElementById("btn-abrir-modal");
+    const btnFecharModal = document.getElementById("btn-fechar-modal");
+    const modalDownload = document.getElementById("modal-download");
 
-    // 1. Ao clicar no botão da primeira tela, esconde o início e mostra as perguntas
+    // 1. Ir do início para as perguntas
     if (btnProximo) {
         btnProximo.addEventListener("click", () => {
             telaInicio.classList.remove("active");
@@ -16,12 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Ao enviar o formulário com as respostas
+    // 2. Enviar as perguntas e ir para a tela do convite limpa
     if (formMensagem) {
         formMensagem.addEventListener("submit", (e) => {
             e.preventDefault();
 
-            // Pega os valores dos 6 campos preenchidos
             const dadosRespostas = {
                 nome: document.getElementById("nome-convidado").value,
                 gosta: document.getElementById("pergunta-gosta").value,
@@ -34,10 +37,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("Respostas recolhidas:", dadosRespostas);
 
-            // Aqui podes integrar o envio para o Firebase Firestore futuramente
-            // Por enquanto, muda para a tela de sucesso:
             telaPerguntas.classList.remove("active");
-            telaSucesso.classList.add("active");
+            telaConvite.classList.add("active");
+        });
+    }
+
+    // 3. Abrir a telinha ao clicar no botão do canto
+    if (btnAbrirModal) {
+        btnAbrirModal.addEventListener("click", () => {
+            modalDownload.classList.add("active");
+        });
+    }
+
+    // 4. Fechar a telinha ao clicar no "X"
+    if (btnFecharModal) {
+        btnFecharModal.addEventListener("click", () => {
+            modalDownload.classList.remove("active");
+        });
+    }
+
+    // Fechar também se clicar fora do card preto
+    if (modalDownload) {
+        modalDownload.addEventListener("click", (e) => {
+            if (e.target === modalDownload) {
+                modalDownload.classList.remove("active");
+            }
         });
     }
 });

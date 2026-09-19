@@ -92,14 +92,14 @@ body {
 .input-arte {
     position: absolute;
     transform: translateX(-50%);
-    width: 35%;
-    max-width: 320px;
-    padding: 6px 10px;
+    width: 38%;
+    max-width: 160px;
+    padding: 6px 8px;
     background: rgba(18, 18, 18, 0.85);
     border: 1px solid #ff65a3;
     border-radius: 6px;
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
 }
 
@@ -108,8 +108,7 @@ body {
     background: rgba(18, 18, 18, 0.95);
 }
 
-/* --- CONTROLO DA POSIÇÃO DE CADA CAMPO (Altera o 'top' para subir ou descer) --- */
-
+/* Posicionamento em duas colunas */
 .campo-1 {
     top: 43%; 
     left: 29%;
@@ -162,7 +161,33 @@ body {
     background: #ff4785;
 }
 
-/* Tela de Sucesso / Formulários gerais */
+/* Botão flutuante de baixar no canto da tela do convite */
+.btn-baixar-canto {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ff65a3;
+    color: #121212;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-baixar-canto:hover {
+    background: #ff4785;
+}
+
+/* Estilos gerais para cards/modais */
 .card-formulario {
     background: #1a1a1a;
     padding: 30px;
@@ -192,4 +217,45 @@ h2 {
 
 .btn-enviar:hover {
     background: #ff4785;
+}
+
+/* Fundo escuro translúcido da telinha (modal) */
+.modal-fundo {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.modal-fundo.active {
+    display: flex;
+}
+
+/* Conteúdo da telinha */
+.modal-conteudo {
+    position: relative;
+    animation: escalaModal 0.3s ease;
+}
+
+@keyframes escalaModal {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Botão de fechar (X) da telinha */
+.btn-fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #ff65a3;
+    font-size: 22px;
+    cursor: pointer;
 }

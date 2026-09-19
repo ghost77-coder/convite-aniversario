@@ -6,10 +6,11 @@
     <title>Karen Luiza - 17 Anos</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- TELA 1: CONVITE OFICIAL -->
+    <!-- TELA 1: INÍCIO -->
     <div id="tela-inicio" class="screen active">
         <div class="container-arte">
             <img src="arte.jpeg" alt="Convite Karen Luiza" class="fundo-convite">
@@ -17,30 +18,43 @@
         </div>
     </div>
 
-    <!-- TELA 2: TABELA DE PERGUNTAS (Com as classes individuais para cada campo) -->
+    <!-- TELA 2: TABELA DE PERGUNTAS -->
     <div id="tela-perguntas" class="screen">
         <div class="container-arte">
             <img src="perguntas.jpeg" alt="Tabela de Perguntas" class="fundo-convite">
             
             <form id="form-mensagem" class="form-flutuante">
-                <input type="text" id="nome-convidado" class="input-arte campo-1" placeholder="Queremos saber quem está por aquii" required>
-                <input type="text" id="pergunta-gosta" class="input-arte campo-2" placeholder="Oque você gosta em mim" required>
-                <input type="text" id="pergunta-presente" class="input-arte campo-3" placeholder="Qual presente você vai levar" required>
-                <input type="text" id="pergunta-fora" class="input-arte campo-4" placeholder="Vai ficar de fora dessa comemoração" required>
-                <input type="text" id="pergunta-confirmou" class="input-arte campo-5" placeholder="Você já confirmou a presença..." required>
-                <input type="text" id="pergunta-beber" class="input-arte campo-6" placeholder="E aí, vai beber ou só ficar observando" required>
+                <input type="text" id="nome-convidado" class="input-arte campo-1" placeholder="Quem está por aqui" required>
+                <input type="text" id="pergunta-gosta" class="input-arte campo-2" placeholder="O que gosta em mim" required>
+                <input type="text" id="pergunta-presente" class="input-arte campo-3" placeholder="Qual presente vai levar" required>
+                <input type="text" id="pergunta-fora" class="input-arte campo-4" placeholder="Vai ficar de fora" required>
+                <input type="text" id="pergunta-confirmou" class="input-arte campo-5" placeholder="Já confirmou?" required>
+                <input type="text" id="pergunta-beber" class="input-arte campo-6" placeholder="Vai beber ou observar" required>
                 
-                <button type="submit" class="btn-enviar-arte campo-botao">Enviar Respostas</button>
+                <button type="submit" class="campo-botao">Enviar Respostas</button>
             </form>
         </div>
     </div>
 
-    <!-- TELA 3: SUCESSO -->
-    <div id="tela-sucesso" class="screen">
-        <div class="card-formulario">
-            <h2>Tudo Pronto!</h2>
-            <p style="color: #fff; margin-bottom: 20px;">Sua mensagem foi enviada com sucesso.</p>
-            <a href="arte.jpeg" download="convite-karen.jpeg" class="btn-enviar" style="display: block; text-decoration: none; text-align: center;">Baixar Convite</a>
+    <!-- TELA 3: VISUALIZAÇÃO DO CONVITE COM O BOTÃO NO CANTO -->
+    <div id="tela-convite" class="screen">
+        <div class="container-arte">
+            <img src="convite.jpeg" alt="Convite Karen Luiza" class="fundo-convite">
+            
+            <!-- Botão no canto que faz a telinha de download aparecer -->
+            <button id="btn-abrir-modal" class="btn-baixar-canto" title="Baixar Convite">
+                <i class="fa-solid fa-download"></i> Baixar
+            </button>
+        </div>
+
+        <!-- A "TELINHA" DE DOWNLOAD (Fica escondida até clicarem no botão do canto) -->
+        <div id="modal-download" class="modal-fundo">
+            <div class="card-formulario modal-conteudo">
+                <button id="btn-fechar-modal" class="btn-fechar">&times;</button>
+                <h2>Tudo Pronto!</h2>
+                <p style="color: #fff; margin-bottom: 20px; font-size: 14px;">Obrigado por responder! Podes baixar o convite oficial abaixo:</p>
+                <a href="convite.jpeg" download="convite-karen.jpeg" class="btn-enviar" style="display: block; text-decoration: none; text-align: center;">Baixar Convite Agora</a>
+            </div>
         </div>
     </div>
 
