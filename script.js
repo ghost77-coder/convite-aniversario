@@ -1,4 +1,20 @@
 // script.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// Credenciais reais do teu projeto Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyBUuuSGXy6JZGTGbQ4q8sz5qvnN003lo0po",
+    authDomain: "aniversario-ce9e4.firebaseapp.com",
+    projectId: "aniversario-ce9e4",
+    storageBucket: "aniversario-ce9e4.appspot.com",
+    messagingSenderId: "600976314403",
+    appId: "1:600976314403:web:214e652f2bcb577ef22196",
+    measurementId: "G-SGL63WMW19"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 document.addEventListener("DOMContentLoaded", () => {
     const btnProximo = document.getElementById("btn-proximo");
@@ -7,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const formMensagem = document.getElementById("form-mensagem");
     const telaConvite = document.getElementById("tela-convite");
     
-    // Elementos da telinha de download
     const btnAbrirModal = document.getElementById("btn-abrir-modal");
     const btnFecharModal = document.getElementById("btn-fechar-modal");
     const modalDownload = document.getElementById("modal-download");
@@ -20,9 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Enviar as perguntas e ir para a tela do convite limpa
+    // 2. Enviar as perguntas para o Firebase e ir para o convite
     if (formMensagem) {
-        formMensagem.addEventListener("submit", (e) => {
+        formMensagem.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const dadosRespostas = {
@@ -35,28 +50,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 dataEnvio: new Date().toISOString()
             };
 
-            console.log("Respostas recolhidas:", dadosRespostas);
+            try {
+                await addDoc(collection(db, "respostas_aniversario"), dadosRespostas);
+                console.log("Respostas salvas com sucesso no Firebase!");
+            } catch (erro) {
+                console.error("Erro ao salvar no Firebase:", erro);
+            }
 
             telaPerguntas.classList.remove("active");
             telaConvite.classList.add("active");
         });
     }
 
-    // 3. Abrir a telinha ao clicar no botão do canto
+    // 3. Abrir a telinha de download
     if (btnAbrirModal) {
         btnAbrirModal.addEventListener("click", () => {
             modalDownload.classList.add("active");
         });
     }
 
-    // 4. Fechar a telinha ao clicar no "X"
+    // 4. Fechar a telinha de download
     if (btnFecharModal) {
         btnFecharModal.addEventListener("click", () => {
             modalDownload.classList.remove("active");
         });
     }
 
-    // Fechar também se clicar fora do card preto
     if (modalDownload) {
         modalDownload.addEventListener("click", (e) => {
             if (e.target === modalDownload) {
