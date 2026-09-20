@@ -44,26 +44,11 @@
         </div>
     </div>
 
-    <!-- Script de Proteção por Senha e Ligação ao Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Senha de acesso ao painel
-        const SENHA_CORRETA = "170427";
-        const senhaDigitada = prompt("Insere a senha de acesso ao painel de respostas:");
-
-        if (senhaDigitada === SENHA_CORRETA) {
-            // Se a senha estiver certa, mostra o painel e carrega os dados
-            document.getElementById("painel-conteudo").style.display = "block";
-            carregarRespostas();
-        } else {
-            // Se errar ou cancelar, redireciona ou avisa
-            alert("Senha incorreta!");
-            window.location.href = "index.html";
-        }
-
-        // Credenciais reais do Firebase
+        // 1. Configuração do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBUuuSGXy6JZGTGbQ4q8sz5qvnN003lo0po",
             authDomain: "aniversario-ce9e4.firebaseapp.com",
@@ -77,6 +62,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // 2. Função para carregar as respostas do Firestore
         async function carregarRespostas() {
             const container = document.getElementById("lista-respostas");
             container.innerHTML = "<p>A carregar...</p>";
@@ -110,8 +96,20 @@
                 });
             } catch (erro) {
                 console.error("Erro ao carregar:", erro);
-                container.innerHTML = "<p style='color: #ff4785;'>Erro ao carregar do Firebase.</p>";
+                container.innerHTML = "<p style='color: #ff4785;'>Erro ao carregar do Firebase. Verifica se o Firestore Database foi criado no painel.</p>";
             }
+        }
+
+        // 3. Verificação de senha e execução
+        const SENHA_CORRETA = "170427";
+        const senhaDigitada = prompt("Insere a senha de acesso ao painel de respostas:");
+
+        if (senhaDigitada === SENHA_CORRETA) {
+            document.getElementById("painel-conteudo").style.display = "block";
+            carregarRespostas();
+        } else {
+            alert("Senha incorreta!");
+            window.location.href = "index.html";
         }
     </script>
 </body>
