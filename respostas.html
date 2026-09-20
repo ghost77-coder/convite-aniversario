@@ -13,6 +13,7 @@
             padding: 20px;
             margin: 0 auto;
             color: #fff;
+            display: none; /* Começa oculto até colocar a senha certa */
         }
         .card-resposta {
             background: #1a1a1a;
@@ -35,7 +36,7 @@
 </head>
 <body>
 
-    <div class="painel-container">
+    <div id="painel-conteudo" class="painel-container">
         <h2>Respostas dos Convidados</h2>
         <p style="margin-bottom: 20px; color: #aaa;">Lista de quem já respondeu ao convite:</p>
         <div id="lista-respostas">
@@ -43,11 +44,26 @@
         </div>
     </div>
 
+    <!-- Script de Proteção por Senha e Ligação ao Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Credenciais reais do teu projeto Firebase
+        // Senha de acesso ao painel
+        const SENHA_CORRETA = "170427";
+        const senhaDigitada = prompt("Insere a senha de acesso ao painel de respostas:");
+
+        if (senhaDigitada === SENHA_CORRETA) {
+            // Se a senha estiver certa, mostra o painel e carrega os dados
+            document.getElementById("painel-conteudo").style.display = "block";
+            carregarRespostas();
+        } else {
+            // Se errar ou cancelar, redireciona ou avisa
+            alert("Senha incorreta!");
+            window.location.href = "index.html";
+        }
+
+        // Credenciais reais do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBUuuSGXy6JZGTGbQ4q8sz5qvnN003lo0po",
             authDomain: "aniversario-ce9e4.firebaseapp.com",
@@ -94,11 +110,9 @@
                 });
             } catch (erro) {
                 console.error("Erro ao carregar:", erro);
-                container.innerHTML = "<p style='color: #ff4785;'>Erro ao carregar do Firebase. Verifica se criaste o Firestore Database no painel.</p>";
+                container.innerHTML = "<p style='color: #ff4785;'>Erro ao carregar do Firebase.</p>";
             }
         }
-
-        carregarRespostas();
     </script>
 </body>
 </html>
